@@ -3,7 +3,8 @@ import React from 'react';
 const Property = (props) => {
     
     return (
-        <div>
+        <div className="row">
+        <div className="six columns">
             <p>{props.propertyName}</p>
             <ul>   
                 <li>address: {props.address}</li>
@@ -11,6 +12,10 @@ const Property = (props) => {
                 <li>Squalor Index: {props.squalorIndex}</li>
             </ul>
             <p>{props.children}</p>
+        </div>
+        <div className="six columns">
+            IMAGE PLACEHOLDER
+        </div>
         </div>
     );
 

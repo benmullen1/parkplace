@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './PropertyUpdate.css';
 
 class PropertyUpdate extends Component {
 
@@ -44,17 +44,27 @@ class PropertyUpdate extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          Property Name:
-          <input type="text" value={this.state.propertyName} onChange={this.handlePropertyNameChange}/></label>
-        <ul>
-          <li><label>Address: <input type="text" value={this.state.address} onChange={this.handleAddressChange}/></label></li>
-          <li><label>Description: <input value={this.state.description}  onChange={this.handleDescriptionChange} /></label></li>
-          <li><label>Squalor Index: <input value={this.state.squalorIndex}  onChange={this.handleSqualorChange} /></label></li>
-        </ul>
-        <input type="submit" value="Submit" />
+      <div className="popup">
+        <form onSubmit={this.handleSubmit} className="popup_inner">
+        <table>
+          <tr>
+            <td><label htmlFor="propertyNameInput">Property Name:</label></td>
+            <td><input id="propertyNameInput" type="text" value={this.state.propertyName} onChange={this.handlePropertyNameChange}/></td>
+          </tr>
+          <tr>
+            <td><label htmlFor="addressInput">Address: </label></td>
+            <td><input id="addressInput" type="text" value={this.state.address} onChange={this.handleAddressChange}/></td>
+          </tr>
+          <tr>
+            <td><label htmlFor="descriptionInput">Description:</label></td>
+            <td><input id="descriptionInput" value={this.state.description}  onChange={this.handleDescriptionChange} /></td>
+          </tr>
+          <tr>
+            <td><label htmlFor="squalorInput">Squalor Index: </label></td>
+            <td><input id="squalorInput" value={this.state.squalorIndex}  onChange={this.handleSqualorChange} /></td>
+          </tr>
+        </table>
+        <input type="submit" value="Submit"/>
         </form>
       </div>
     );

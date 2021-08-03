@@ -23,8 +23,9 @@ class PropertyList extends Component {
     }
 
     handleUpdateSubmit = (name, address, description, squalorIndex, id) =>{
-        let properties = this.state.properties;
-        let property = properties.find(property => property.propertyId === id);
+        const properties = [...this.state.properties];
+        let propertyIndex = properties.findIndex(property => property.propertyId === id);
+        let property = properties[propertyIndex];
         property.propertyName = name;
         property.address = address;
         property.description = description;
@@ -38,6 +39,25 @@ class PropertyList extends Component {
 
 
     render() { 
+
+        let updateModal = null;
+
+        if (this.state.updateModalVisible){
+            updateModal = (
+                <PropertyUpdate
+                propertyId={this.state.selectedProperty.propertyId} 
+                propertyName = {this.state.selectedProperty.propertyName}
+                address = {this.state.selectedProperty.address}
+                description = {this.state.selectedProperty.description}
+                squalorIndex= {this.state.selectedProperty.squalorIndex}
+                onClickAway={this.setUpdateModalVisible}
+                submitHandler={this.handleUpdateSubmit}
+            >
+                {this.state.selectedProperty}
+            </PropertyUpdate>
+            );
+        }
+
         return (
             <div>
                 
@@ -59,22 +79,7 @@ class PropertyList extends Component {
                     </tr>
                     </tbody>
                 </table>
-                {this.state.updateModalVisible && 
-                    <PropertyUpdate
-                        className="container"
-                        propertyId={this.state.selectedProperty.propertyId} 
-                        propertyName = {this.state.selectedProperty.propertyName}
-                        address = {this.state.selectedProperty.address}
-                        description = {this.state.selectedProperty.description}
-                        squalorIndex= {this.state.selectedProperty.squalorIndex}
-                        onClickAway={this.setUpdateModalVisible}
-                        submitHandler={this.handleUpdateSubmit}
-                    >
-                        {this.state.selectedProperty}
-                    </PropertyUpdate>
-                }
-
-
+                {updateModal}
             </div>
         );
     }
