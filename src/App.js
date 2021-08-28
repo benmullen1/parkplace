@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropertyList from './PropertyList';
+import PropertyUpdate from './Property/PropertyUpdate';
 
 class App extends Component {
 
