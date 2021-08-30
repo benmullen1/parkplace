@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
-import Property from './Property/Property';
-import PropertyUpdate from './Property/PropertyUpdate';
+import Property from './views/Property';
+import PropertyUpdate from './views/PropertyUpdate';
+import PropertyController from './controllers/PropertyController';
 
 class PropertyList extends Component {
 
+    /*
     state = {
         properties: [
           {propertyName: "Ducksworth Landing", address: "432 Hinterlands Dr.", description: "Quick access to thiccc ducks", squalorIndex: "Fine imported breads and cheeses", propertyId:"1A"},
           {propertyName: "Pilgrim Estates", address: "753 Sacajewea Dr.", description: "Plymouth Rock landed on savings", squalorIndex: "smallpox infested blankets", propertyId:"2B"},
           {propertyName: "The Trap", address: "323 Martin Luther King Blvd.", description: "Great neighborhood for jogging", squalorIndex: "some racist BS", propertyId:"3C"},
         ],
+        updateModalVisible: false,
+        selectedProperty: 0
+    }
+    */
+
+    //setup property list
+    controller = new PropertyController();
+    state = {
+        properties : new PropertyController().getProperties(),
         updateModalVisible: false,
         selectedProperty: 0
     }

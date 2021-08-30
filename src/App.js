@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropertyList from './PropertyList';
-import PropertyUpdate from './Property/PropertyUpdate';
+import PropertyUpdate from './views/PropertyUpdate';
 
 class App extends Component {
 
@@ -15,7 +15,7 @@ class App extends Component {
     });
   }
 
-  handleAddPropertyClick(event){
+  handleExperiments(event){
 
   }
 
@@ -48,6 +48,11 @@ class App extends Component {
         <div className="two.columns">
           <button onClick={e =>this.setUpdateModalVisible()}>Add Property</button>
         </div>
+        <div>
+          <h3>Experimental Features</h3>
+          <button onClick={this.handleExperiments}>Experiment</button>
+        </div>
+
       </div>
     );
   }
