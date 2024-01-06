@@ -1,70 +1,99 @@
 import React, { Component } from 'react';
+import Property from '../model/Property';
 import './PropertyUpdate.css';
 
 class PropertyUpdate extends Component {
 
+  originalProperty;
+
   constructor(props) {
     super(props);
-    this.state = { 
-                    propertyName: this.props.propertyName, 
-                    address: this.props.address,
-                    description: this.props.description,
-                    squalorIndex: this.props.squalorIndex,
-                    propertyId: this.props.propertyId,
-                    submitHandler: this.props.submitHandler 
-                  };
+    this.state = {
+      property: this.props.property,
+      submitHandler: this.props.submitHandler
+    };
 
     this.handlePropertyNameChange = this.handlePropertyNameChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleSqualorChange = this.handleSqualorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.originalProperty = Object.assign({}, this.props.propertyName, this.props.address, this.props.description, this.props.squalorIndex, this.props.propertyId);
+    
   }
 
-  handlePropertyNameChange(event) { 
-    this.setState({ propertyName: event.target.value }); 
+  handlePropertyNameChange(event) {
+    this.state.property.propertyName = event.target.value;
+    this.setState({property: this.state.property});
   }
 
-  handleAddressChange(event) { 
-    this.setState({ address: event.target.value }); 
+  handleAddressChange(event) {
+    this.state.property.address = event.target.value;
+    this.setState({property:  this.state.property});
   }
 
-  handleDescriptionChange(event) { 
-    this.setState({ description: event.target.value }); 
+  handleDescriptionChange(event) {
+    this.state.property.description = event.target.value;
+    this.setState({property:  this.state.property});
   }
 
-  handleSqualorChange(event) { 
-    this.setState({ squalorIndex: event.target.value }); 
+  handleSqualorChange(event) {
+    this.state.property.squalorIndex = event.target.value;
+    this.setState({property: this.state.property});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.state.submitHandler(this.state.propertyName, this.state.address, this.state.description, this.state.squalorIndex, this.state.propertyId );
+    if (event.value === "Submit"){
+         this.state.submitHandler(this.state.property);
+    }
+    else{
+      this.state.submitHandler(this.originalProperty);
+    }
   }
 
+  handleEsc(event) {
+    if (event.keyCode === 27) {
+      this.state.submitHandler(this.originalProperty);
+    }
+  }
+
+  useEffect() {
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }
+
+
   render() {
+
+    
+
     return (
       <div className="popup">
         <form onSubmit={this.handleSubmit} className="popup_inner">
-        <table>
-          <tr>
-            <td><label htmlFor="propertyNameInput">Property Name:</label></td>
-            <td><input id="propertyNameInput" type="text" value={this.state.propertyName} onChange={this.handlePropertyNameChange}/></td>
-          </tr>
-          <tr>
-            <td><label htmlFor="addressInput">Address: </label></td>
-            <td><input id="addressInput" type="text" value={this.state.address} onChange={this.handleAddressChange}/></td>
-          </tr>
-          <tr>
-            <td><label htmlFor="descriptionInput">Description:</label></td>
-            <td><input id="descriptionInput" value={this.state.description}  onChange={this.handleDescriptionChange} /></td>
-          </tr>
-          <tr>
-            <td><label htmlFor="squalorInput">Squalor Index: </label></td>
-            <td><input id="squalorInput" value={this.state.squalorIndex}  onChange={this.handleSqualorChange} /></td>
-          </tr>
-        </table>
-        <input type="submit" value="Submit"/>
+          <table>
+            <tr>
+              <td><label htmlFor="propertyNameInput">Property Name:</label></td>
+              <td><input id="propertyNameInput" type="text" value={this.state.property.propertyName} onChange={this.handlePropertyNameChange} /></td>
+            </tr>
+            <tr>
+              <td><label htmlFor="addressInput">Address: </label></td>
+              <td><input id="addressInput" type="text" value={this.state.property.address} onChange={this.handleAddressChange} /></td>
+            </tr>
+            <tr>
+              <td><label htmlFor="descriptionInput">Description:</label></td>
+              <td><input id="descriptionInput" value={this.state.property.description} onChange={this.handleDescriptionChange} /></td>
+            </tr>
+            <tr>
+              <td><label htmlFor="squalorInput">Squalor Index: </label></td>
+              <td><input id="squalorInput" value={this.state.property.squalorIndex} onChange={this.handleSqualorChange} /></td>
+            </tr>
+          </table>
+          <input type="submit" value="Submit" />
+          <input type="button" value="Cancel"/>
         </form>
       </div>
     );

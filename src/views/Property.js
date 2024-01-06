@@ -1,4 +1,5 @@
 import React from 'react';
+import './Property.css';
 
 const Property = (props) => {
     
@@ -14,7 +15,9 @@ const Property = (props) => {
             <p>{props.children}</p>
         </div>
         <div className="six columns">
-            IMAGE PLACEHOLDER
+            <div className="propertyImage">
+                <img src={props.imageURL} alt={props.propertyName}/>
+            </div>
         </div>
         </div>
     );

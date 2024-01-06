@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Property from './model/Property';
 import PropertyList from './PropertyList';
 import PropertyUpdate from './views/PropertyUpdate';
 
@@ -10,10 +11,38 @@ class App extends Component {
 
   setUpdateModalVisible = ()=>{
     var visibility = !this.state.updateModalVisible;
-    this.setState({
+    if (visibility){
+      let newProperty = new Property();
+      this.setState({
+          updateModalVisible: visibility,
+          selectedProperty: newProperty
+      });
+    }
+    else{
+      this.setState({
         updateModalVisible: visibility,
+        selectedProperty: null
     });
+    }
   }
+
+  handleUpdateSubmit = (property) =>{
+    const properties = [...this.state.properties];
+
+    let propertyIndex = properties.findIndex(property => property.propertyId === id);
+    if (propertyIndex === -1){
+      property = properties.push(property);
+    }
+    else {
+      //somehow is already in list
+      properties[propertyIndex] = property;
+    }
+
+    this.setState({
+        properties: properties,
+        updateModalVisible: false
+    });
+}
 
   handleExperiments(event){
 
