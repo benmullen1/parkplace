@@ -1,6 +1,6 @@
 [
-    {"propertyName": "Ducksworth Landing", "address": "432 Hinterlands Dr.", "description": "Quick access to thiccc ducks", "squalorIndex": "Fine imported breads and cheeses", "propertyId":"1A"},
-    {"propertyName": "Pilgrim Estates", "address": "753 Sacajewea Dr.", "description": "Plymouth Rock landed on savings", "squalorIndex": "smallpox infested blankets", "propertyId":"2B"},
-    {"propertyName": "The Trap", "address": "323 Martin Luther King Blvd.", "description": "Great neighborhood for jogging", "squalorIndex": "some racist BS", "propertyId":"3C"},
-    {"propertyName": "Eternal Abyss", "address": "666 Fire Lake Road", "description": "where do bad folks go while they live?", "squalorIndex": "brimstone and fire", "propertyId":"4D"}
+    {"propertyName": "Ducksworth Landing", "address": "432 Hinterlands Dr.", "description": "Quick access to thiccc ducks", "squalorIndex": "Fine imported breads and cheeses", "propertyId":"1", "imageURL":"/images/properties/duck_apartment.jpeg"},
+    {"propertyName": "Pilgrim Estates", "address": "753 Sacajewea Dr.", "description": "Plymouth Rock landed on savings", "squalorIndex": "smallpox infested blankets", "propertyId":"2", "imageURL":"/images/properties/pilgrims_apartment.jpeg"},
+    {"propertyName": "The Trap", "address": "323 Martin Luther King Blvd.", "description": "Great neighborhood for jogging", "squalorIndex": "some racist BS", "propertyId":"3", "imageURL":"/images/properties/king_tower.jpeg"},
+    {"propertyName": "Eternal Abyss", "address": "666 Fire Lake Road", "description": "where do bad folks go while they live?", "squalorIndex": "brimstone and fire", "propertyId":"4", "imageURL":"/images/properties/fire_tower.jpeg"}
 ]

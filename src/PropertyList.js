@@ -33,18 +33,15 @@ class PropertyList extends Component {
         });
     }
 
-    handleUpdateSubmit = (name, address, description, squalorIndex, id) =>{
-        const properties = [...this.state.properties];
-        let propertyIndex = properties.findIndex(property => property.propertyId === id);
-        let property = properties[propertyIndex];
-        property.propertyName = name;
-        property.address = address;
-        property.description = description;
-        property.squalorIndex = squalorIndex;
-        //properties.find(property => property.propertyId === id) = property;
+    handleUpdateSubmit = (updatedProperty) =>{
+        const propertiesList = [...this.state.properties];
+        var currentProperty = this.controller.retrieveProperty(updatedProperty.propertyID);
+        if(currentProperty){
+            currentProperty = updatedProperty;
+        }
+        var visibility = !this.state.updateModalVisible;
         this.setState({
-            properties: properties,
-            updateModalVisible: false
+            updateModalVisible: visibility
         });
     }
 
@@ -56,11 +53,12 @@ class PropertyList extends Component {
         if (this.state.updateModalVisible){
             updateModal = (
                 <PropertyUpdate
-                propertyId={this.state.selectedProperty.propertyId} 
-                propertyName = {this.state.selectedProperty.propertyName}
-                address = {this.state.selectedProperty.address}
-                description = {this.state.selectedProperty.description}
-                squalorIndex= {this.state.selectedProperty.squalorIndex}
+                //propertyId={this.state.selectedProperty.propertyId} 
+                //propertyName = {this.state.selectedProperty.propertyName}
+                //address = {this.state.selectedProperty.address}
+                //description = {this.state.selectedProperty.description}
+                //squalorIndex= {this.state.selectedProperty.squalorIndex}
+                property={this.state.selectedProperty}
                 onClickAway={this.setUpdateModalVisible}
                 submitHandler={this.handleUpdateSubmit}
             >
@@ -79,9 +77,10 @@ class PropertyList extends Component {
                             <Property 
                                 propertyName={property.propertyName} 
                                 address={property.address} 
-                                key={property.propertyId}
+                                key={property.propertyID}
                                 description={property.description}
                                 squalorIndex={property.squalorIndex}
+                                imageURL={property.imageURL}
                             >
                             <button onClick={e =>this.setUpdateModalVisible(property)}>Update Property</button>
                             </Property>)}
